@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Rakifa ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff6a88,#ff99ac,#ffc3d0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+/* Floating Hearts */
+
+.heart{
+    position:absolute;
+    bottom:-20px;
+    color:white;
+    animation:float 7s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) scale(0);
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120vh) scale(1.8);
+        opacity:0;
+    }
+}
+
+/* Main Card */
+
+.card{
+    width:90%;
+    max-width:380px;
+    padding:35px 28px;
+    border-radius:30px;
+    text-align:center;
+    color:white;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    box-shadow:0 10px 35px rgba(0,0,0,0.25);
+    animation:fadeIn 1.2s ease;
+    z-index:10;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h1{
+    font-size:2.3rem;
+    margin-bottom:12px;
+}
+
+.subtitle{
+    font-size:1rem;
+    line-height:1.8;
+    margin-bottom:28px;
+}
+
+/* Buttons */
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:none;
+    padding:13px 25px;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:1rem;
+    transition:.3s;
+    font-weight:600;
+}
+
+.yes{
+    background:white;
+    color:#ff4d79;
+}
+
+.yes:hover{
+    transform:scale(1.08);
+}
+
+.no{
+    background:#ff4d79;
+    color:white;
+    position:relative;
+}
+
+.music-btn{
+    margin-top:18px;
+    background:white;
+    color:#ff4d79;
+}
+
+.music-btn:hover{
+    transform:scale(1.05);
+}
+
+/* Hidden Message */
+
+#loveMessage{
+    display:none;
+    margin-top:25px;
+    font-size:1.3rem;
+    animation:fadeIn 1s ease;
+}
+
+/* Glow */
+
+.glow{
+    text-shadow:0 0 10px rgba(255,255,255,0.8);
+}
+
+/* Mobile */
+
+@media(max-width:420px){
+
+    h1{
+        font-size:1.9rem;
+    }
+
+    .subtitle{
+        font-size:.92rem;
+    }
+
+    button{
+        width:120px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Card -->
+
+<div class="card">
+
+    <h1 class="glow">I'm Sorry 🥺</h1>
+
+    <div class="subtitle">
+        Rakifa... 💖<br><br>
+
+        Maybe I made mistakes,  
+        maybe I hurt your feelings...  
+        But trust me, my heart still belongs only to you 🌸<br><br>
+
+        Please forgive me and bring back your beautiful smile 🥹❤️
+    </div>
+
+    <div class="buttons">
+
+        <button class="yes" onclick="forgive()">
+            Forgive Me 💕
+        </button>
+
+        <button class="no" id="noBtn">
+            No 😒
+        </button>
+
+    </div>
+
+    <button class="music-btn" onclick="playMusic()">
+        🎵 Play Music
+    </button>
+
+    <div id="loveMessage">
+        YAYYYY 🥰💖<br><br>
+        I Love You So Much Rakifa ❤️
+    </div>
+
+</div>
+
+<!-- Music -->
+
+<audio id="music" loop>
+    <source src="C:\Users\ROKIB\OneDrive\Desktop\love\music.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Floating Hearts */
+
+function createHeart(){
+
+    const heart=document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML="💖";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+
+    heart.style.animationDuration=(Math.random()*3+4)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },7000);
+}
+
+setInterval(createHeart,500);
+
+/* Moving NO Button */
+
+const noBtn=document.getElementById("noBtn");
+
+function moveButton(){
+
+    const maxX=window.innerWidth-noBtn.offsetWidth-20;
+
+    const maxY=window.innerHeight-noBtn.offsetHeight-20;
+
+    const x=Math.random()*maxX;
+
+    const y=Math.random()*maxY;
+
+    noBtn.style.position="absolute";
+
+    noBtn.style.left=x+"px";
+
+    noBtn.style.top=y+"px";
+}
+
+noBtn.addEventListener("mouseover",moveButton);
+
+noBtn.addEventListener("touchstart",moveButton);
+
+/* Forgive */
+
+function forgive(){
+
+    document.getElementById("loveMessage").style.display="block";
+
+    for(let i=0;i<40;i++){
+        createHeart();
+    }
+}
+
+/* Music */
+
+function playMusic(){
+
+    const music=document.getElementById("music");
+
+    music.play();
+}
+
+</script>
+
+</body>
+</html>
